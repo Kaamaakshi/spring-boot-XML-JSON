@@ -79,7 +79,7 @@ public class UsersController {
         }
     }
 
-    //Endpoint to update user by ID
+ //Endpoint to update user by ID
     @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity updateUserById(@PathVariable String id, @RequestBody User userDetails) {
          Optional<User> user=userRepository.findById(id);
@@ -89,8 +89,7 @@ public class UsersController {
             User updatedUser=userRepository.save(existingUser);
            // return ResponseEntity.ok(updatedUser);
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body(Map.of("message", "User with this ID " + id + " has been updated successfully.",
-                            "user", updatedUser));
+                    .body(updatedUser);
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with this id "+id);
         }
