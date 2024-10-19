@@ -29,7 +29,7 @@ public class UsersController {
     public ResponseEntity createUsers(@RequestBody Users users) {
         List<User> savedUsers = userRepository.saveAll(users.getUsers());
         return ResponseEntity.status(HttpStatus.CREATED).
-                body(Map.of("message", "User created successfully", "user", savedUsers));
+                body(Map.of("message", "Users created successfully", "user", savedUsers));
     }
 //Endpoint to fetch by using id
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
