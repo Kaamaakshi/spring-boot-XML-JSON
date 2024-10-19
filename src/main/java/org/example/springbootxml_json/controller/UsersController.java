@@ -39,7 +39,7 @@ public class UsersController {
             return ResponseEntity.status(HttpStatus.FOUND).
                     body(user.get());
         }else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user not found with this id "+id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("users not found with this id "+id);
         }
     }
 //Endpoint to fetch all users
