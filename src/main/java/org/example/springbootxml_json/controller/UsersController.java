@@ -14,14 +14,14 @@ import java.util.Optional;
 
 @RestController
 public class UsersController {
-    @Autowired
+     @Autowired
     private UsersRepository userRepository;
    // Endpoint to save single users
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity createUser(@RequestBody User user) {
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Map.of("message", "User created successfully", "user", savedUser));
+                .body(savedUser);
     }
 
     // Endpoint to save multiple users
@@ -29,7 +29,7 @@ public class UsersController {
     public ResponseEntity createUsers(@RequestBody Users users) {
         List<User> savedUsers = userRepository.saveAll(users.getUsers());
         return ResponseEntity.status(HttpStatus.CREATED).
-                body(Map.of("message", "Users created successfully", "user", savedUsers));
+                body(savedUsers);
     }
 //Endpoint to fetch by using id
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -75,7 +75,7 @@ public class UsersController {
         }else {
             userRepository.deleteAll();
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body(Map.of("user",users , "message" ,"All users are deleted successfully"));
+                    .body("All users are deleted successfully");
         }
     }
 
